@@ -42,22 +42,23 @@ namespace PrototypeLogic.Game_Manager
         {
 			if (Instance != null) return;
 			Instance = this;
-			DontDestroyOnLoad(this);
 
-			UpdatableGroup = new List<IUpdateble>();
-			LateUpdatableGroup = new List<ILateUpdateble>();
+			Instance.UpdatableGroup = new List<IUpdateble>();
+			Instance.LateUpdatableGroup = new List<ILateUpdateble>();
 
-			foreach (var baseManager in BaseManagersGroup)
+			foreach (var baseManager in Instance.BaseManagersGroup)
 			{
-				baseManager.Initialize();
+				var manager = Instantiate(baseManager);
+				manager.Initialize();
 			}
+			DontDestroyOnLoad(this);
 		}
 
         private void Update()
         {
-			if (UpdatableGroup.Count == 0) return;
+			if (Instance.UpdatableGroup.Count == 0) return;
 
-			foreach (var updatebleItem in UpdatableGroup)
+			foreach (var updatebleItem in Instance.UpdatableGroup)
             {
                 updatebleItem.MyUpdate();
             }
@@ -65,17 +66,18 @@ namespace PrototypeLogic.Game_Manager
 
         private void LateUpdate()
         {
-			if (LateUpdatableGroup.Count == 0) return;
+			if (Instance.LateUpdatableGroup.Count == 0) return;
 
-			foreach (var lateUdatebleItem in LateUpdatableGroup)
+			foreach (var lateUdatebleItem in Instance.LateUpdatableGroup)
             {
                 lateUdatebleItem.MyLateUpdate();
 			}
 		}
 
-		public void StartGame()
+		public void StartNewGame()
         {
-            Debug.Log("Game Started");
+			UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
+			Debug.Log("Game Started");
         }
 
         public void QuitGame()
