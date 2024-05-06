@@ -46,10 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WindowsList:
   - type: 0
-    prefab: {fileID: 5209828429908670918, guid: 4f72033046d72484392002e01d4e9aec, type: 3}
-  - type: 1
-    prefab: {fileID: 8471179599185898413, guid: 122c612e0f8ea2f4d89a60e32100c4cd, type: 3}
-  - type: 2
-    prefab: {fileID: 6102312402440899224, guid: ff66dc299b4fd0249b7323d7205ed140, type: 3}
-  - type: 3
-    prefab: {fileID: 8489166105485032182, guid: e83c4349b6571114595ef5573ceea365, type: 3}
+    prefab: {fileID: 7554594117122047832, guid: 0c8e963333f259341890e0a198129555, type: 3}
+  - type: 4
+    prefab: {fileID: -588516479662683003, guid: 40e3564d99558a9418d7e88334f9f721, type: 3}
+  - type: 5
+    prefab: {fileID: 401633066811246045, guid: df47efee695d91943bd0338f90eb1dcc, type: 3}
+  - type: 6
+    prefab: {fileID: -1883001317500653149, guid: 2466fe0bc97d9fb46a7f71bc459a43e8, type: 3}
+  - type: 7
+    prefab: {fileID: -8126860067323184694, guid: cd0a59dd56f0bfe4586d30828cc5ef88, type: 3}

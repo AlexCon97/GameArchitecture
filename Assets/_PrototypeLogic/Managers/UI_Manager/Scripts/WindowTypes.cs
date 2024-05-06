@@ -5,6 +5,10 @@
         MainMenu,
         Settings,
 		AboutGame,
-		GamePause
+		GamePause,
+        Guide,
+        Question,
+        SelectLevel,
+        Success
     }
 }
