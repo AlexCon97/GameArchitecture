@@ -11,6 +11,7 @@ namespace PrototypeLogic.Dialogue_Manager
         [SerializeField] private TMPro.TextMeshProUGUI DialogueCharacterName;
         [SerializeField] private TMPro.TextMeshProUGUI TextContainer;
         [SerializeField] private Button TapPlace;
+        [SerializeField] private Button SkipButton;
 
         private ITypingBehavior typingBehavior;
         private Dialogue currentDialogue;
@@ -24,6 +25,7 @@ namespace PrototypeLogic.Dialogue_Manager
             SetTypingBehavior(new ImmediateTypingBehavior());
             currentDialogue = DialogueManager.Instance.GetDialogue(dialogueTitle);
             TapPlace.onClick.AddListener(NextReplica);
+            SkipButton.onClick.AddListener(SkipDialogue);
 
             StartDialogue();
         }
@@ -39,6 +41,11 @@ namespace PrototypeLogic.Dialogue_Manager
             Debug.Log("End");
             OnDialogueFinished?.Invoke();
             Destroy(gameObject);
+        }
+        private void SkipDialogue()
+        {
+            Debug.Log("Skipped");
+            FinishDialogue();
         }
 
         public void SetTypingBehavior(ITypingBehavior typingBehavior) =>
