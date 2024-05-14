@@ -23,8 +23,6 @@ namespace PrototypeLogic.UI_Manager
             {
                 WindowsDictionary.Add(window.type, window.prefab);
             }
-
-			DontDestroyOnLoad(this);
         }
     
         public void Show(WindowTypes windowType)
@@ -51,7 +49,7 @@ namespace PrototypeLogic.UI_Manager
 		}
     
         [Serializable]
-        private class UIWindow
+        private struct UIWindow
         {
             public WindowTypes type;
             public BaseWindow prefab;

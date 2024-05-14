@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5251622636221116657
+--- !u!1 &1919744100467947815
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5251622636221116659}
-  - component: {fileID: 5251622636221116658}
-  - component: {fileID: 5251622636221116660}
+  - component: {fileID: 4065631841737467129}
+  - component: {fileID: 3040852629089976634}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -18,86 +17,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5251622636221116659
+--- !u!4 &4065631841737467129
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5251622636221116657}
+  m_GameObject: {fileID: 1919744100467947815}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 294.54245, y: 441.88818, z: -10.518288}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5251622636221116658
+--- !u!114 &3040852629089976634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5251622636221116657}
+  m_GameObject: {fileID: 1919744100467947815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62fc26058aab74b44a43a28134a3c571, type: 3}
+  m_Script: {fileID: 11500000, guid: 73888d89e3da82745b1b7212f0a73e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FDialogueControllerPrfab: {fileID: 5341262679321337999, guid: 3defecb92b22d8d49aae2402708c4b7a,
-    type: 3}
-  FDialogueData: {fileID: 5251622636221116660}
-  FDialogueConversatorGroup:
-  - FName: 1
-    FSprite: {fileID: 21300000, guid: 4df1f4dfc241e564b99da5c7cdd0139e, type: 3}
-  - FName: 2
-    FSprite: {fileID: 21300000, guid: 4bf96a6f77b116049b08ac0dd66bd1c5, type: 3}
-  - FName: 3
-    FSprite: {fileID: 21300000, guid: 8c34a509eb5436b41ae7eb4d4960f3f0, type: 3}
---- !u!114 &5251622636221116660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5251622636221116657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffb8293bc78f064bb0417c619040ab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FDialogue:
-  - FDialoguePhrase:
-    - FDialogueConversator: 2
-      FPhrase: "I'm really honored to write the first words of this book, the very
-        first one about SFML. /END/ When I started to write this library, in 2006,
-        I couldn't imagine that it would become so much popular. Around 100,000 visitors
-        per month, 100 new forum posts everyday... this is huge! And this is just
-        the beginning; with the release of SFML 2.0, the library makes an important
-        step forward. While SFML 1 is a constantly evolving (understand \"unstable\")
-        API, SFML 2.0 is meant to be a robust, stable, and mature foundation for
-        the future. And hopefully a solid base for more and more great games. Increasing
-        popularity also means more effort from the authors to provide complete and
-        quality documentation. Sadly, this is often overlooked by developers. Although
-        I do my best to provide detailed tutorials for SFML, they are nothing more
-        than an improved API documentation. Users often ask me where they can find
-        a more complete guide to start programming games with SFML. And until today,
-        I had nowhere to direct them to. But Artur, Henrik, and Jan did a great job
-        to fill this hole. They have gathered their wisdom and experience into a
-        unique book that covers the basics of game programming, as well as everything
-        that SFML has to offer\u2014from audio to network, through advanced graphics.
-        What I really appreciate about this book is that it is written with the same
-        philosophy that is behind SFML: good design, simplicity, and modern code. "
-    - FDialogueConversator: 1
-      FPhrase: Super. What we gonna do?
-    - FDialogueConversator: 3
-      FPhrase: Lets finish dialog
-  - FDialoguePhrase:
-    - FDialogueConversator: 1
-      FPhrase: 2Hello How are you
-    - FDialogueConversator: 2
-      FPhrase: Super what about you
-    - FDialogueConversator: 1
-      FPhrase: Ok. Where we go?
-    - FDialogueConversator: 3
-      FPhrase: Lets finish dialog
+  DialogueControllerPrefab: {fileID: 3230890349016857459, guid: 8f165076ef7d6fa48a8e7857bd9f6f2b, type: 3}
+  DialogueCharacters:
+  - {fileID: 11400000, guid: fde40ac4e36a2e346bffdc6421495fa3, type: 2}
+  Dialogues:
+  - {fileID: 11400000, guid: 9de74a7e12e991244a8772a1fd281f89, type: 2}
+  - {fileID: 11400000, guid: ce6216b426eb3ed4fa6ea1cdd68cff14, type: 2}

@@ -1,54 +1,48 @@
-﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace PrototypeLogic.Dialogue_Manager
 {
     public class DialogueManager : BaseManager
     {
-        [SerializeField] private DialogueController FDialogueControllerPrfab;
-        [SerializeField] private DialogueData FDialogueData;
-        [SerializeField] private List<DialogueConversator> FDialogueConversatorGroup;
-        
-        public static DialogueManager FInstance;
+        [SerializeField] private DialogueController DialogueControllerPrefab;
+        [SerializeField] private Dialogue[] Dialogues;
 
-        public DialogueData GetData() => FDialogueData;
-        public Dictionary<CharacterNames,Sprite> GetDialogueConversator { get; private set; }
-        
+        private Dictionary<DialogueTitle, Dialogue> DialoguesGroup =
+            new Dictionary<DialogueTitle, Dialogue>();
+
+        public Dialogue GetDialogue(DialogueTitle name) => DialoguesGroup[name];
+
+        public static DialogueManager Instance;
+
+        private DialogueController CurrentDialogueController { get; set; }
+
         public override void Initialize()
         {
-            Singleton();
-            GetDialogueConversator = new Dictionary<CharacterNames, Sprite>();
-            foreach (var conversator in FDialogueConversatorGroup)
+            if (Instance != null) return;
+            Instance = this;
+
+            foreach (var dialogue in Dialogues)
             {
-                GetDialogueConversator.Add(conversator.FName, conversator.FSprite);
+                DialoguesGroup.Add(dialogue.GetTitle, dialogue);
             }
+            
+            Debug.Log("DialogueManager Initialized");
         }
 
-        private void Singleton()
+        public void StartDialogue(DialogueTitle dialogueTitle, Action OnDialogueStartedAction = null, Action OnDialogueFinishedAction = null)
         {
-            if (FInstance != null) return;
-            FInstance = this;
+            if (CurrentDialogueController != null || !DialoguesGroup.ContainsKey(dialogueTitle))
+            {
+                Debug.LogError("DialoguesGroup NOT ContainsKey or CurrentDialogueController is NULL");
+                return;
+            }
+            CurrentDialogueController = Instantiate(DialogueControllerPrefab);
+            CurrentDialogueController.OnDialogueStarted += OnDialogueStartedAction;
+            CurrentDialogueController.OnDialogueFinished += OnDialogueFinishedAction;
+            CurrentDialogueController.Initialize(dialogueTitle);
         }
-        
-        public void StartDialog(int dialogueIndex, Action OnDialogueStartedAction, Action OnDialogueFinishedAction)
-        {
-            var dialogController = Instantiate(FDialogueControllerPrfab);
-            if (OnDialogueStartedAction != null) dialogController.OnDialogueStarted += OnDialogueStartedAction;
-            if (OnDialogueFinishedAction != null) dialogController.OnDialogueFinished += OnDialogueFinishedAction;
-            dialogController.Initialize(dialogueIndex);
-        }
-    }
-
-    [Serializable]
-    public class DialogueConversator
-    {
-        public CharacterNames FName;
-        public Sprite FSprite;
-    }
-    
-    public enum CharacterNames
-    {
-        None
     }
 }

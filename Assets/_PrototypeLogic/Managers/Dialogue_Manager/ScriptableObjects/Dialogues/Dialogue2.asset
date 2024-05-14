@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708ac91adcc19284ab0d24903f88a29e, type: 3}
+  m_Name: Dialogue2
+  m_EditorClassIdentifier: 
+  Title: 2
+  Replicas:
+  - DialogueCharacterObject: {fileID: 11400000, guid: e890b88efe94d494f86600e438bb0da0, type: 2}
+    DialoguePhrase: Character2. talking smth shit.
+  - DialogueCharacterObject: {fileID: 11400000, guid: e890b88efe94d494f86600e438bb0da0, type: 2}
+    DialoguePhrase: "Character2 answering smth goddamn shit\nDialogueController \u2013
+      dialogue controller (canvas), which appears when dialogue started. It has:\r\n\u2022\t2
+      images (left/right conversator), \n\u2022\ttap place or Space button (to skip
+      text writing, and show next phrase)\nThe text length is adapting to the text
+      container (word by word).\n\nDialogueType \u2013 enumeration type of dialogues.\r\nDialogueCharacterName
+      \u2013 enumeration name of dialogue characters.\r\nDialogueController \u2013
+      dialogue controller (canvas), which appears when dialogue started. It has:\r\n\u2022\t2
+      images (left/right conversator), \n\u2022\ttap place or Space button (to skip
+      text writing, and show next phrase)\nThe text length is adapting to the text
+      container (word by word)."
+  - DialogueCharacterObject: {fileID: 11400000, guid: fde40ac4e36a2e346bffdc6421495fa3, type: 2}
+    DialoguePhrase: Character1 finishing that fucking shit

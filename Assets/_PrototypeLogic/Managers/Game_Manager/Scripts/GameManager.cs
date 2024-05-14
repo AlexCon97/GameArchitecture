@@ -50,6 +50,7 @@ namespace PrototypeLogic.Game_Manager
 			{
 				var manager = Instantiate(baseManager);
 				manager.Initialize();
+				DontDestroyOnLoad(manager);
 			}
 			DontDestroyOnLoad(this);
 		}
