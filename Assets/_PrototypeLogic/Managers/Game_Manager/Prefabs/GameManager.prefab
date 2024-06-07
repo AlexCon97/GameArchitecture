@@ -45,4 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseManagersGroup:
-  - {fileID: 7957338903540316493, guid: 3ad83be6dabf1a3488b5be048b5c20ce, type: 3}
+  - {fileID: 11400000, guid: 836b9776a5c38cb42a56f051dc6a5967, type: 2}
+  - {fileID: 11400000, guid: 49ca0807f71a08a48bb37cd6a0635240, type: 2}
+  - {fileID: 11400000, guid: 2bb8a2c7d6d487846a0c13ee660605aa, type: 2}
+  - {fileID: 11400000, guid: 043ba8ab285ff5e449118ac9e999a3d6, type: 2}

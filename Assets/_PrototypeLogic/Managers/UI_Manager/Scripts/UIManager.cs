@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace PrototypeLogic.UI_Manager
 {
+    [CreateAssetMenu(menuName = "Game Managers/UI_Manager", fileName = "New UI_Manager")]
     public class UIManager : BaseManager
     {
         [SerializeField] private List<UIWindow> WindowsList;
@@ -12,7 +13,7 @@ namespace PrototypeLogic.UI_Manager
         private Stack<BaseWindow> WindowsStack = new Stack<BaseWindow>();
         private Dictionary<WindowTypes, BaseWindow> WindowsDictionary = new Dictionary<WindowTypes, BaseWindow>();
 
-        public static UIManager Instance;
+        private static UIManager Instance;
 
         public override void Initialize()
         {
@@ -21,31 +22,33 @@ namespace PrototypeLogic.UI_Manager
 
             foreach (var window in WindowsList)
             {
-                WindowsDictionary.Add(window.type, window.prefab);
+                Instance.WindowsDictionary.Add(window.type, window.prefab);
             }
+
+            Debug.Log("UIManager Initialized");
         }
     
-        public void Show(WindowTypes windowType)
+        public static void Show(WindowTypes windowType)
         {
-            if (CurrentWindow != null) CurrentWindow.DestroyWindow();
-            CurrentWindow = WindowsDictionary[windowType].CreateWindow();
-            CurrentWindow.Initialize();
-            WindowsStack.Push(WindowsDictionary[windowType]);
+            if (Instance.CurrentWindow != null) Instance.CurrentWindow.DestroyWindow();
+            Instance.CurrentWindow = Instance.WindowsDictionary[windowType].CreateWindow();
+            Instance.CurrentWindow.Initialize();
+            Instance.WindowsStack.Push(Instance.WindowsDictionary[windowType]);
         }
     
-        public void Close()
+        public static void Close()
         {
-            CurrentWindow.DestroyWindow();
-            WindowsStack.Clear();
+            Instance.CurrentWindow.DestroyWindow();
+            Instance.WindowsStack.Clear();
         }
     
-        public void Back()
+        public static void Back()
         {
-            if (WindowsStack.Count <= 1) return;
-            CurrentWindow.DestroyWindow();
-            WindowsStack.Pop();
-            CurrentWindow = WindowsStack.Peek().CreateWindow();
-            CurrentWindow.Initialize();
+            if (Instance.WindowsStack.Count <= 1) return;
+            Instance.CurrentWindow.DestroyWindow();
+            Instance.WindowsStack.Pop();
+            Instance.CurrentWindow = Instance.WindowsStack.Peek().CreateWindow();
+            Instance.CurrentWindow.Initialize();
 		}
     
         [Serializable]

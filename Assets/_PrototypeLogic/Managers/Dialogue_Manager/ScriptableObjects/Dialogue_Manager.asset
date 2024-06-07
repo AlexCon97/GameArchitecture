@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73888d89e3da82745b1b7212f0a73e7c, type: 3}
+  m_Name: Dialogue_Manager
+  m_EditorClassIdentifier: 
+  DialogueControllerPrefab: {fileID: 3230890349016857459, guid: 8f165076ef7d6fa48a8e7857bd9f6f2b, type: 3}
+  Dialogues:
+  - {fileID: 11400000, guid: 9de74a7e12e991244a8772a1fd281f89, type: 2}
+  - {fileID: 11400000, guid: ce6216b426eb3ed4fa6ea1cdd68cff14, type: 2}

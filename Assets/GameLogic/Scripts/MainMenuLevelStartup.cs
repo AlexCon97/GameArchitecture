@@ -7,17 +7,18 @@ public class MainMenuLevelStartup : MonoBehaviour
 
     private void Start()
     {
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
         //UIManager.Instance.Show(WindowTypes.MainMenu);
-        DialogueManager.Instance.StartDialogue(DialogueTitle.DialogueTitle1,
-            () => Debug.Log("LETS CONVERSATION"),
-            () => Debug.Log("START TASK"));
+        //DialogueManager.Instance.StartDialogue(DialogueTitle.DialogueTitle1,
+        //    () => Debug.Log("LETS CONVERSATION"),
+        //    () => Debug.Log("START TASK"));
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-            DialogueManager.Instance.StartDialogue(DialogueTitle.DialogueTitle2,
-            () => Debug.Log("LETS CONVERSATION"),
-            () => Debug.Log("START TASK"));
+        //if (Input.GetKeyDown(KeyCode.E))
+        //    DialogueManager.Instance.StartDialogue(DialogueTitle.DialogueTitle2,
+        //    () => Debug.Log("LETS CONVERSATION"),
+        //    () => Debug.Log("START TASK"));
     }
 }

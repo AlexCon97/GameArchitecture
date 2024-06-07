@@ -7,21 +7,21 @@ namespace PrototypeLogic.Game_Manager
     public class GameManager : MonoBehaviour
     {
 		#region ForDebug
-		public int GetUpdatableCount => UpdatableGroup.Count;
-		public int GetLateUpdatableCount => LateUpdatableGroup.Count;
+		public int GetUpdatableCount => Instance.UpdatableGroup.Count;
+		public int GetLateUpdatableCount => Instance.LateUpdatableGroup.Count;
 
 		public void GetUpdatableTypes()
 		{
-			for(int i=0; i < GetUpdatableCount; i++)
+			for(int i=0; i < Instance.GetUpdatableCount; i++)
 			{
-				Debug.Log(UpdatableGroup[i].GetType());
+				Debug.Log(Instance.UpdatableGroup[i].GetType());
 			}
 		}
 		public void GetLateUpdatableTypes()
 		{
-			for(int i=0; i < GetUpdatableCount; i++)
+			for(int i=0; i < Instance.GetUpdatableCount; i++)
 			{
-				Debug.Log(LateUpdatableGroup[i].GetType());
+				Debug.Log(Instance.LateUpdatableGroup[i].GetType());
 			}
 		}
 		#endregion
@@ -31,10 +31,10 @@ namespace PrototypeLogic.Game_Manager
         private List<IUpdateble> UpdatableGroup;
         private List<ILateUpdateble> LateUpdatableGroup;
 		
-		public void AddUpdatableItem(IUpdateble item) => UpdatableGroup.Add(item);
-		public void RemoveUpdatableItem(IUpdateble item) => UpdatableGroup.Remove(item);
-        public void AddLateUpdatableItem(ILateUpdateble item) => LateUpdatableGroup.Add(item);
-        public void RemoveLateUpdatableItem(ILateUpdateble item) => LateUpdatableGroup.Remove(item);
+		public void AddUpdatableItem(IUpdateble item) => Instance.UpdatableGroup.Add(item);
+		public void RemoveUpdatableItem(IUpdateble item) => Instance.UpdatableGroup.Remove(item);
+        public void AddLateUpdatableItem(ILateUpdateble item) => Instance.LateUpdatableGroup.Add(item);
+        public void RemoveLateUpdatableItem(ILateUpdateble item) => Instance.LateUpdatableGroup.Remove(item);
 		
 		public static GameManager Instance;
 
@@ -50,7 +50,7 @@ namespace PrototypeLogic.Game_Manager
 			{
 				var manager = Instantiate(baseManager);
 				manager.Initialize();
-				DontDestroyOnLoad(manager);
+				//DontDestroyOnLoad(manager);
 			}
 			DontDestroyOnLoad(this);
 		}

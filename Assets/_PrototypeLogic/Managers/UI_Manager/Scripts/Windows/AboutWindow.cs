@@ -11,7 +11,7 @@ namespace PrototypeLogic.UI_Manager.Windows
 
         public override void Initialize()
         {
-            BackButton.onClick.AddListener(UIManager.Instance.Back);
+            BackButton.onClick.AddListener(UIManager.Back);
         }
     }
 }

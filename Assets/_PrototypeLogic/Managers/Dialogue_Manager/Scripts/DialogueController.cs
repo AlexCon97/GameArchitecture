@@ -23,7 +23,7 @@ namespace PrototypeLogic.Dialogue_Manager
         public void Initialize(DialogueTitle dialogueTitle)
         {
             SetTypingBehavior(new ImmediateTypingBehavior());
-            currentDialogue = DialogueManager.Instance.GetDialogue(dialogueTitle);
+            currentDialogue = DialogueManager.GetDialogue(dialogueTitle);
             TapPlace.onClick.AddListener(NextReplica);
             SkipButton.onClick.AddListener(SkipDialogue);
 

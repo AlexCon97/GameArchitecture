@@ -5,44 +5,43 @@ using System;
 
 namespace PrototypeLogic.Dialogue_Manager
 {
+    [CreateAssetMenu(menuName = "Game Managers/Dialogue_Manager", fileName = "New Dialogue_Manager")]
     public class DialogueManager : BaseManager
     {
         [SerializeField] private DialogueController DialogueControllerPrefab;
         [SerializeField] private Dialogue[] Dialogues;
 
-        private Dictionary<DialogueTitle, Dialogue> DialoguesGroup =
-            new Dictionary<DialogueTitle, Dialogue>();
-
-        public Dialogue GetDialogue(DialogueTitle name) => DialoguesGroup[name];
-
-        public static DialogueManager Instance;
+        private Dictionary<DialogueTitle, Dialogue> DialoguesGroup = new Dictionary<DialogueTitle, Dialogue>();
+        private static DialogueManager Instance;
 
         private DialogueController CurrentDialogueController { get; set; }
+
+        public static Dialogue GetDialogue(DialogueTitle name) => Instance.DialoguesGroup[name];
 
         public override void Initialize()
         {
             if (Instance != null) return;
             Instance = this;
 
-            foreach (var dialogue in Dialogues)
+            foreach (var dialogue in Instance.Dialogues)
             {
-                DialoguesGroup.Add(dialogue.GetTitle, dialogue);
+                Instance.DialoguesGroup.Add(dialogue.GetTitle, dialogue);
             }
             
             Debug.Log("DialogueManager Initialized");
         }
 
-        public void StartDialogue(DialogueTitle dialogueTitle, Action OnDialogueStartedAction = null, Action OnDialogueFinishedAction = null)
+        public static void StartDialogue(DialogueTitle dialogueTitle, Action OnDialogueStartedAction = null, Action OnDialogueFinishedAction = null)
         {
-            if (CurrentDialogueController != null || !DialoguesGroup.ContainsKey(dialogueTitle))
+            if (Instance.CurrentDialogueController != null || !Instance.DialoguesGroup.ContainsKey(dialogueTitle))
             {
                 Debug.LogError("DialoguesGroup NOT ContainsKey or CurrentDialogueController is NULL");
                 return;
             }
-            CurrentDialogueController = Instantiate(DialogueControllerPrefab);
-            CurrentDialogueController.OnDialogueStarted += OnDialogueStartedAction;
-            CurrentDialogueController.OnDialogueFinished += OnDialogueFinishedAction;
-            CurrentDialogueController.Initialize(dialogueTitle);
+            Instance.CurrentDialogueController = Instantiate(Instance.DialogueControllerPrefab);
+            Instance.CurrentDialogueController.OnDialogueStarted += OnDialogueStartedAction;
+            Instance.CurrentDialogueController.OnDialogueFinished += OnDialogueFinishedAction;
+            Instance.CurrentDialogueController.Initialize(dialogueTitle);
         }
     }
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d15f1013ea166a341991fade99707e6c, type: 3}
+  m_Name: ChapterTask_ItemCollectable
+  m_EditorClassIdentifier: 
+  Title: 1
+  ChapterSprite: {fileID: 0}
+  ChapterNumber: Sequence 1
+  ChapterName: Item collectable
+  ChapterDescription: Collect different items
+  SingleTasks:
+  - {fileID: 11400000, guid: 87b57d30b0ae68a4a873d757a89c0865, type: 2}
+  - {fileID: 11400000, guid: 1032aacd8011aa94096b7eacd3572260, type: 2}
+  AdditionTasks: []

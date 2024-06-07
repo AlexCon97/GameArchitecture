@@ -15,8 +15,8 @@ namespace PrototypeLogic.UI_Manager.Windows
         public override void Initialize()
         {
             NewGameButton.onClick.AddListener(Game_Manager.GameManager.Instance.StartNewGame);
-            SettingsButton.onClick.AddListener(() => UIManager.Instance.Show(WindowTypes.Settings));
-            AboutButton.onClick.AddListener(() => UIManager.Instance.Show(WindowTypes.AboutGame));
+            SettingsButton.onClick.AddListener(() => UIManager.Show(WindowTypes.Settings));
+            AboutButton.onClick.AddListener(() => UIManager.Show(WindowTypes.AboutGame));
             ExitButton.onClick.AddListener(QuitGame);
         }
 

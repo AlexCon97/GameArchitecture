@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PrototypeLogic
 {
-    public abstract class BaseManager : MonoBehaviour
+    public abstract class BaseManager : ScriptableObject
     {
         public abstract void Initialize();
     }
