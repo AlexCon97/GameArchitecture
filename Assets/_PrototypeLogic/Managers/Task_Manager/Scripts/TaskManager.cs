@@ -66,14 +66,16 @@ namespace PrototypeLogic.Task_Manager {
         }
         #endregion
 
-        public static void CancelTask(TaskTitle title)
+        public static void CancelTask()
         {
             CurrentTask.CancelTask();
             UnhideAllTaskTriggers();
+            CurrentTask.OnTaskCompleted -= CompleteTask;
+            CurrentTask = null;
             Debug.Log("Task Canceled");
         }
 
-        public void CompleteTask()
+        public static void CompleteTask()
         {
             TasksCompletedAmount++;
             RemoveTaskTrigger(CurrentTask.GetTitle);
@@ -81,9 +83,10 @@ namespace PrototypeLogic.Task_Manager {
             Debug.Log("Task Completed");
         }
 
-        public void ReloadTask(TaskTitle title)
+        public static void ReloadTask()
         {
             CurrentTask.ReloadTask();
+            CurrentTask.StartTask();
             Debug.Log("Task Reloaded");
         }
 
@@ -97,7 +100,7 @@ namespace PrototypeLogic.Task_Manager {
             }
 
             CurrentTask = Instance.TaskGroup[title];
-            CurrentTask.OnTaskCompleted += Instance.CompleteTask;
+            CurrentTask.OnTaskCompleted += CompleteTask;
             CurrentTask.InitializeTask();
             CurrentTask.StartTask();
             HideAllTaskTriggers();
@@ -128,8 +131,9 @@ namespace PrototypeLogic.Task_Manager {
         }
         private static void RemoveTaskTrigger(TaskTitle taskTitle)
         {
-            var targetTaskTrigger = Instance.TaskTriggersGroupOnScene[taskTitle].gameObject;
+            Destroy(Instance.TaskTriggersGroupOnScene[taskTitle].gameObject);
             Instance.TaskTriggersGroupOnScene.Remove(taskTitle);
+            CurrentTask.OnTaskCompleted -= CompleteTask;
             CurrentTask = null;
         }
     }

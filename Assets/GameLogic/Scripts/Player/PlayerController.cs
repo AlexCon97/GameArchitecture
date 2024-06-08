@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed=1;
+    [SerializeField] private float jumpSpeed=1;
     private Rigidbody rb;
     private Vector3 newVelocity;
     private Vector3 MoveDelta => newVelocity * Time.deltaTime;
@@ -26,10 +27,19 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
+        newVelocity.x = Input.GetAxis("Horizontal") * speed;
+        newVelocity.z = Input.GetAxis("Vertical") * speed;
+
+        //if (Input.GetButtonDown("Jump")) Jump();
     }
 
     private void FixedUpdate() => rb.velocity = MoveDelta;
+
+    private void Jump()
+    {
+        newVelocity.y = jumpSpeed;
+        rb.AddRelativeForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+    }
 
     private void PlayerMove()
     {

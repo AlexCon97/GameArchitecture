@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace PrototypeLogic.Task_Manager
 {
-    public class SingleTask : TaskBase
+    public abstract class SingleTask : TaskBase
     {
-        private bool IsStarted { get; set; }
-
         public override void CancelTask()
         {
-            Debug.Log("SingleTask Parent Cancele");
+            Debug.Log("SingleTask Parent Canceled");
             OnTaskCanceled?.Invoke();
         }
 
@@ -29,7 +27,7 @@ namespace PrototypeLogic.Task_Manager
 
         public override void ReloadTask()
         {
-            if (!IsStarted) return;
+            ResetValues();
             Debug.Log("SingleTask Parent Reload");
             OnTaskReloaded?.Invoke();
         }
@@ -41,7 +39,6 @@ namespace PrototypeLogic.Task_Manager
 
         public override void StartTask()
         {
-            IsStarted = true;
             Debug.Log("SingleTask Parent Start");
             OnTaskStarted?.Invoke();
         }

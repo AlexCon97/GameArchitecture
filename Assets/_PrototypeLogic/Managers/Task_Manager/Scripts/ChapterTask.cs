@@ -14,9 +14,6 @@ namespace PrototypeLogic.Task_Manager
         [SerializeField] private SingleTask[] SingleTasks;
         [SerializeField] private SingleTask[] AdditionTasks;
 
-        private List<SingleTask> SingleTaskGroupOnScene;
-        private List<SingleTask> AdditionTaskGroupOnScene;
-
         private int SingleTaskIndex { get; set; }
         private int AdditionTaskIndex { get; set; }
         private int AdditionTaskCompletedAmount { get; set; }
@@ -40,11 +37,13 @@ namespace PrototypeLogic.Task_Manager
             Debug.Log("ChapterTask Parent Cancel");
             foreach (var singleTask in SingleTasks)
             {
+                singleTask.OnTaskCompleted -= SingleTaskComplete;
                 singleTask.CancelTask();
             }
 
             foreach (var additionTask in AdditionTasks)
             {
+                additionTask.OnTaskCompleted -= AdditionTaskComplete;
                 additionTask.CancelTask();
             }
             OnTaskCanceled?.Invoke();
@@ -58,8 +57,6 @@ namespace PrototypeLogic.Task_Manager
 
         public override void ResetValues()
         {
-            SingleTaskGroupOnScene = new List<SingleTask>();
-            AdditionTaskGroupOnScene = new List<SingleTask>();
             OnAdditionTasksCompleted = null;
             SingleTaskIndex = 0;
             AdditionTaskIndex = 0;
@@ -72,20 +69,16 @@ namespace PrototypeLogic.Task_Manager
             Debug.Log("ChapterTask Parent Initialize");
 
             ResetValues();
-            foreach (var singleTaskPrefab in SingleTasks)
+            foreach (var singleTask in SingleTasks)
             {
-                var singleTask = Instantiate(singleTaskPrefab);
                 singleTask.InitializeTask();
                 singleTask.OnTaskCompleted += SingleTaskComplete;
-                SingleTaskGroupOnScene.Add(singleTask);
             }
             
-            foreach (var additionTaskPrefab in AdditionTasks)
+            foreach (var additionTask in AdditionTasks)
             {
-                var additionTask = Instantiate(additionTaskPrefab);
                 additionTask.InitializeTask();
                 additionTask.OnTaskCompleted += AdditionTaskComplete;
-                AdditionTaskGroupOnScene.Add(additionTask);
             }
             OnTaskInitialized?.Invoke();
         }
@@ -116,20 +109,19 @@ namespace PrototypeLogic.Task_Manager
         protected void SingleTaskStart()
         {
             if (SingleTaskIndex >= SingleTasks.Length) return;
-            SingleTaskGroupOnScene[SingleTaskIndex].StartTask();
+            SingleTasks[SingleTaskIndex].StartTask();
             SingleTaskIndex++;
         }
         protected void AdditionTaskStart()
         {
             if (AdditionTaskIndex >= AdditionTasks.Length) return;
-            AdditionTaskGroupOnScene[AdditionTaskIndex].StartTask();
+            AdditionTasks[AdditionTaskIndex].StartTask();
             AdditionTaskIndex++;
         }
 
         private void SingleTaskComplete()
         {
             SingleTaskCompletedAmount++;
-            Debug.Log(SingleTaskCompletedAmount+"=="+ SingleTasks.Length);
             if (SingleTaskCompletedAmount == SingleTasks.Length)
             {
                 Debug.Log("ChapterTask Parent Completed");

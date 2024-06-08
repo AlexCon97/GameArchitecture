@@ -13,7 +13,7 @@ namespace PrototypeLogic.Task_Manager
             if (other.GetComponent<PlayerController>())
             {
                 OnCoinCollected?.Invoke();
-                Destroy(gameObject);
+                HideMe();
             }
         }
 

@@ -17,8 +17,7 @@ namespace PrototypeLogic.Task_Manager
         public override void ResetValues()
         {
             base.ResetValues();
-
-            spawnedCoins = new List<CoinTrigger>();
+            Debug.Log("Reset");
             collectedCoinsAmount = 0;
             coinsAmount = locations.Length;
         }
@@ -26,23 +25,23 @@ namespace PrototypeLogic.Task_Manager
         public override void InitializeTask()
         {
             base.InitializeTask();
-            
+            spawnedCoins = new List<CoinTrigger>();
 
-            for (int i = 0; i < locations.Length; i++)
+            for (int i = 0; i < coinsAmount; i++)
             {
                 var coin = Instantiate(coinPrefab, locations[i], Quaternion.identity);
                 coin.OnCoinCollected += CoinCollect;
                 coin.HideMe();
                 spawnedCoins.Add(coin);
             }
+            Debug.Log(spawnedCoins.Count + " Spawned Coins amount INIT");
             Debug.Log("SingleTask Concrete Initialize");
         }
-
-        
 
         private void CoinCollect()
         {
             collectedCoinsAmount++;
+            Debug.LogWarning(collectedCoinsAmount);
             if(collectedCoinsAmount >= coinsAmount)
             {
                 CompleteTask();
@@ -52,11 +51,11 @@ namespace PrototypeLogic.Task_Manager
         public override void StartTask()
         {
             base.StartTask();
-
             for (int i = 0; i < locations.Length; i++)
             {
                 spawnedCoins[i].UnhideMe();
             }
+            Debug.Log(spawnedCoins.Count + " Spawned Coins amount START");
             Debug.Log("SingleTask Concrete Start");
         }
 
@@ -64,6 +63,28 @@ namespace PrototypeLogic.Task_Manager
         {
             base.CompleteTask();
             Debug.Log("Single Task Completed");
+        }
+
+        public override void CancelTask()
+        {
+            base.CancelTask();
+
+            Debug.Log(spawnedCoins.Count + " Spawned Coins amount CANCEL");
+            for (int i = 0; i < spawnedCoins.Count; i++)
+            {
+                Destroy(spawnedCoins[i].gameObject);
+            }
+            spawnedCoins.Clear();
+        }
+
+        public override void ReloadTask()
+        {
+            base.ReloadTask();
+            for (int i = 0; i < spawnedCoins.Count; i++)
+            {
+                spawnedCoins[i].HideMe();
+            }
+            Debug.Log("Concrete Reloaded");
         }
     }
 }

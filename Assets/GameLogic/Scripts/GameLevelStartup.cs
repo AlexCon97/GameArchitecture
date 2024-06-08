@@ -14,6 +14,9 @@ public class GameLevelStartup : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            UIManager.Show(WindowTypes.GamePause);
+        {
+            TaskManager.ReloadTask();
+            //UIManager.Show(WindowTypes.GamePause);
+        }
     }
 }
