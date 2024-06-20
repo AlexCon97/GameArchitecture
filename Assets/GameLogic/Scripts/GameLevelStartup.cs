@@ -8,7 +8,7 @@ public class GameLevelStartup : MonoBehaviour
     private void Awake()
     {
         TaskManager.ShowOrInitializeTaskTrigger(5);
-
+        HUD.Active();
     }
 
     private void Update()

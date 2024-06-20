@@ -6,9 +6,9 @@ namespace PrototypeLogic.Popup_Manager
 {
     public class PopupChapterTaskCompletedInfo : PopupBase
     {
-        private void Awake()
+        public override void Initialize()
         {
-            SetShowBehavior(new PopupShowAnimBehavior());
+            
         }
     }
 }

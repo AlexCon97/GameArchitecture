@@ -18,3 +18,6 @@ MonoBehaviour:
   - {fileID: -1829640290838635534, guid: 4d76ad8791f0f724ca77003116eb942e, type: 3}
   Tasks:
   - {fileID: 11400000, guid: ab4539b74342ca143bae4c8ed333ee07, type: 2}
+  DefaultTaskIcon: {fileID: 21300000, guid: 7bb5bd0ffc8cefa438beda327f5d3642, type: 3}
+  UncompletedTaskIcon: {fileID: 21300000, guid: ac1582ff6e992754e8c1a469e0ca0956, type: 3}
+  CompletedTaskIcon: {fileID: 21300000, guid: 86c81f68aceef884692ebd1f14a9944b, type: 3}

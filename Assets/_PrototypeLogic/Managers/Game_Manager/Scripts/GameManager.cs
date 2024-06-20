@@ -27,7 +27,8 @@ namespace PrototypeLogic.Game_Manager
 		#endregion
 
 		[SerializeField] private List<BaseManager> BaseManagersGroup = new List<BaseManager>();
-        
+		[SerializeField] private HUD Hud;
+
         private List<IUpdateble> UpdatableGroup;
         private List<ILateUpdateble> LateUpdatableGroup;
 		
@@ -42,16 +43,19 @@ namespace PrototypeLogic.Game_Manager
         {
 			if (Instance != null) return;
 			Instance = this;
+			
+			var hud = Instantiate(Instance.Hud);
+			hud.Initialize();
 
 			Instance.UpdatableGroup = new List<IUpdateble>();
 			Instance.LateUpdatableGroup = new List<ILateUpdateble>();
 
 			foreach (var baseManager in Instance.BaseManagersGroup)
 			{
-				var manager = Instantiate(baseManager);
-				manager.Initialize();
-				//DontDestroyOnLoad(manager);
+				baseManager.Initialize();
 			}
+			
+
 			DontDestroyOnLoad(this);
 		}
 

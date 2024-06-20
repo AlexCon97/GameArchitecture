@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15f1013ea166a341991fade99707e6c, type: 3}
   m_Name: ChapterTask_ItemCollectable
   m_EditorClassIdentifier: 
+  TaskSprite: {fileID: 21300000, guid: 86c81f68aceef884692ebd1f14a9944b, type: 3}
+  TaskShortName: Hunter story
+  TaskFullName: Meet the bear hunters
   Title: 1
-  ChapterSprite: {fileID: 0}
-  ChapterNumber: Sequence 1
-  ChapterName: Item collectable
-  ChapterDescription: Collect different items
   SingleTasks:
   - {fileID: 11400000, guid: 87b57d30b0ae68a4a873d757a89c0865, type: 2}
+  AdditionTasks:
+  - {fileID: 11400000, guid: 87b57d30b0ae68a4a873d757a89c0865, type: 2}
   - {fileID: 11400000, guid: 1032aacd8011aa94096b7eacd3572260, type: 2}
-  AdditionTasks: []

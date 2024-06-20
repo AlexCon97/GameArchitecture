@@ -10,20 +10,31 @@ namespace PrototypeLogic.Task_Manager {
         [SerializeField] private bool UsingTaskTriggers;
         [SerializeField] private TaskTriggerBase[] TaskTriggers;
         [SerializeField] private TaskBase[] Tasks;
+        [SerializeField] private Sprite DefaultTaskIcon;
+        [SerializeField] private Sprite UncompletedTaskIcon;
+        [SerializeField] private Sprite CompletedTaskIcon;
 
         private Dictionary<TaskTitle, TaskBase> TaskGroup = new Dictionary<TaskTitle, TaskBase>();
         private Dictionary<TaskTitle, TaskTriggerBase> TaskTriggersGroupOnScene = new Dictionary<TaskTitle, TaskTriggerBase>();
         
         private static TaskManager Instance;
         
-        public static TaskBase CurrentTask { get; private set; }
+        public static TaskBase CurrentTask { get; set; }
         public static int TasksCompletedAmount { get; set; }
+        public static Sprite GetDefaultTaskIcon => Instance.DefaultTaskIcon;
+        public static Sprite GetUncompletedTaskIcon => Instance.UncompletedTaskIcon;
+        public static Sprite GetCompletedTaskIcon => Instance.CompletedTaskIcon;
+
+        public static TaskBase GetTask(TaskTitle title) => Instance.TaskGroup[title];
 
         #region Initialize
         public override void Initialize()
         {
             if (Instance != null) return;
             Instance = this;
+
+            CurrentTask = null;
+            TasksCompletedAmount = 0;
             InitializeTasks();
 
             Debug.Log("TaskManager Initialized");
@@ -68,6 +79,7 @@ namespace PrototypeLogic.Task_Manager {
 
         public static void CancelTask()
         {
+            CurrentTask.IsTaskStarted = false;
             CurrentTask.CancelTask();
             UnhideAllTaskTriggers();
             CurrentTask.OnTaskCompleted -= CompleteTask;
@@ -75,8 +87,9 @@ namespace PrototypeLogic.Task_Manager {
             Debug.Log("Task Canceled");
         }
 
-        public static void CompleteTask()
+        public static void CompleteTask(TaskTitle title)
         {
+            CurrentTask.IsTaskStarted = false;
             TasksCompletedAmount++;
             RemoveTaskTrigger(CurrentTask.GetTitle);
             UnhideAllTaskTriggers();
@@ -93,16 +106,17 @@ namespace PrototypeLogic.Task_Manager {
         public static void StartTask(TaskTitle title)
         {
             Debug.Log("Task Start");
-            if (!Instance.TaskGroup.ContainsKey(title) || CurrentTask!=null)
+            if (!Instance.TaskGroup.ContainsKey(title))
             {
-                Debug.LogError("Task Not Found or Started");
+                Debug.LogError("Task Not Found");
                 return;
             }
 
-            CurrentTask = Instance.TaskGroup[title];
+            //CurrentTask = GetTask(title);
             CurrentTask.OnTaskCompleted += CompleteTask;
             CurrentTask.InitializeTask();
             CurrentTask.StartTask();
+            CurrentTask.IsTaskStarted = true;
             HideAllTaskTriggers();
             Debug.Log("Task Started Fully");
         }

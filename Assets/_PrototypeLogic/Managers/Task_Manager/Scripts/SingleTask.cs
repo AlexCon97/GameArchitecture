@@ -15,7 +15,7 @@ namespace PrototypeLogic.Task_Manager
         public override void CompleteTask()
         {
             Debug.Log("SingleTask Parent Complete");
-            OnTaskCompleted?.Invoke();
+            OnTaskCompleted?.Invoke(GetTitle);
         }
 
         public override void InitializeTask()

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d367fc31104104fbb796569483fcaf, type: 3}
   m_Name: SingleTask_CollectItems2
   m_EditorClassIdentifier: 
-  Title: 1
+  TaskSprite: {fileID: 0}
+  TaskShortName: 
+  TaskFullName: 
+  Title: 2
   coinPrefab: {fileID: 7557824549857372870, guid: b093146062396ce4faa0b3c3fa0574c4, type: 3}
   locations:
   - {x: -2.83, y: -0.29734516, z: -3.23}

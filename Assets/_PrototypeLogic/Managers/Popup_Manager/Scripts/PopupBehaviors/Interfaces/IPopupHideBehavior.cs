@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace PrototypeLogic.Popup_Manager
 {
     public interface IPopupHideBehavior
     {
-        void Hide();
+        Task Hide(PopupBase popup);
     }
 }
